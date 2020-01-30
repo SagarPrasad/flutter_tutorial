@@ -13,22 +13,42 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _questions = [
+  var _questions = [
     {
       'question': 'what\'s your fav color',
-      'answer': [{'text':'R', 'score':10}, {'text':'G', 'score':5}, {'text':'B', 'score':3}, {'text':'V', 'score':1}],
+      'answer': [
+        {'text': 'Red', 'score': 10},
+        {'text': 'Green', 'score': 5},
+        {'text': 'Black', 'score': 3},
+        {'text': 'Voilet', 'score': 1}
+      ],
     },
     {
-      'question': 'what\'s your fav book',
-      'answer': [{'text':'A', 'score':10}, {'text':'B', 'score':5}, {'text':'V', 'score':3}, {'text':'D', 'score':1}],
+      'question': 'what\'s your fav subject',
+      'answer': [
+        {'text': 'Physics', 'score': 10},
+        {'text': 'Literature', 'score': 5},
+        {'text': 'Maths', 'score': 3},
+        {'text': 'SST', 'score': 1}
+      ],
     },
     {
       'question': 'what\'s your fav animal',
-      'answer': [{'text':'T', 'score':10}, {'text':'E', 'score':5}, {'text':'S', 'score':3}, {'text':'R', 'score':1}],
+      'answer': [
+        {'text': 'Tiger', 'score': 10},
+        {'text': 'Elephant', 'score': 5},
+        {'text': 'Snake', 'score': 3},
+        {'text': 'Rat', 'score': 1}
+      ],
     },
     {
       'question': 'who is your actor',
-      'answer': [{'text':'A', 'score':10}, {'text':'N', 'score':5}, {'text':'P', 'score':3}, {'text':'Y', 'score':1}],
+      'answer': [
+        {'text': 'Abhi', 'score': 10},
+        {'text': 'Shahruk', 'score': 5},
+        {'text': 'Salman', 'score': 3},
+        {'text': 'Aamir', 'score': 1}
+      ],
     },
   ];
   var _questionIndex = 0;
@@ -36,13 +56,14 @@ class _MyAppState extends State<MyApp> {
 
   void _resetQuiz() {
     setState(() {
-          _questionIndex = 0;
-    _totalScore = 0;
+      _questions = _questions.toList()..shuffle();
+      _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
   void _answerQuestion(int score) {
-    _totalScore+= score;
+    _totalScore += score;
     setState(() {
       _questionIndex++;
     });
@@ -51,6 +72,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_questions);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
